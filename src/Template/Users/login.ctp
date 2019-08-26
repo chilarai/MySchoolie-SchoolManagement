@@ -40,8 +40,8 @@
 
                         </p>
                     <?php echo $this->Form->end(); ?>
-                    <div class="text-center"><a href="https://play.google.com/store/apps/details?id=com.myschoolie.parents1"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></a></div><br/>
-                    <div class="text-center"><a href="https://play.google.com/store/apps/details?id=com.myschoolie.teachers1"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></a></div>
+                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></div><br/>
+                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></div>
                 </div>
                 <!-- end login-content -->
 

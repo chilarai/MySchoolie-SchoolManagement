@@ -17,10 +17,10 @@
                     <h4 class="text-center">We are happy to announce the launch of our school applications for the parents and the faculty. Click on the respective icon to download your application</h4>
                     <br/><br/>
 
-                    <div class="text-center"><a href="https://play.google.com/store/apps/details?id=com.myschoolie.parents1"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></a></div><br/>
+                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></div><br/>
                     <br/><br/>
                     <hr/>
-                    <div class="text-center"><a href="https://play.google.com/store/apps/details?id=com.myschoolie.teacher1"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></a></div>
+                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></div>
                     <br/><br/>
                     <h5 class="text-center"><a href="<?php echo BASE_URL;?>img/install_instructions.png">Click here to read the Application Installation Instructions</a></h5><br/>
                     <h5 class="text-center">For any support, mail to support@myschoolie.in</h5><br/>
