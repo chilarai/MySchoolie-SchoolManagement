@@ -1,0 +1,4 @@
+first_name,last_name,mobile,email,blood_group,gender,date_of_birth,caste,highest_qualification,qualification_stream,university,college,pass_year,applied_for,salary_bracket,joining_date
+Ramesh,Ram,9971111113,raghuram@gmail.com,B-,male,1/1/1990,SC,MCA,Computers,Jain University,SBJ Internation College,2010,TGT,B,1/1/2017
+Suresh,Tripathi,9971111114,shalini@gmail.com,B+,female,1/1/1994,General,PHD,Chemistry,Integral University,Intergral University,2010,PGT,A,2/2/2017
+Haldwani,Tripathi,9971111114,shalini@gmail.com,B+,female,1/1/1994,General,PHD,Chemistry,Integral University,Intergral University,2010,PGT,A,2/2/2017
