@@ -17,83 +17,76 @@ class UsersController extends AppController
 
 		public function login(){
 
-			// //email_test
-			// 		 	 		$email = new Email('default');
-			// 					$email->from(['resale@estatesourcing.com' => 'Estatesourcing'])
-			// 					    ->to('verma.rohit.in@gmail.com')
-			// 					    ->subject('Test Mail')
-			// 					    ->send('If you see yes then say yes');
-
-			//print_r($this->request);
-
 		 $this->viewBuilder()->layout('authscreen');
 		 
 		if ($this->request->is('post')) {
 
-			if($this->request->data['mobile'] == 'admin'){
+			if($this->request->data['mobile']){
 
-					 $mobile = 9876543210;
-				 	 $password = $this->request->data['password'];
-				 	 $user_type_id = 3;
+					$mobile = $this->request->data['mobile'];
+					$password = $this->request->data['password'];
+					$user_type_id = 1;
 
-				 	 if(isset($mobile, $password, $user_type_id)){
-				 	 	$user_select = $this->Users->find("all")->where(['mobile' => $mobile, 'user_type_id' => $user_type_id])->contain(['UserTypes'])->select(['Users.id', 'Users.mobile', 'Users.name', 'Users.password', 'Users.is_active', 'UserTypes.user_type'])->first();
+					if(isset($mobile, $password, $user_type_id)){
+						$user_select = $this->Users->find("all")->where(['mobile' => $mobile, 'user_type_id' => $user_type_id])->contain(['UserTypes'])->select(['Users.id', 'Users.mobile', 'Users.name', 'Users.password', 'Users.is_active', 'UserTypes.user_type'])->first();
+						
+						print_r($user_select);
 
-				 	 	if(!empty($user_select)){
+						if(!empty($user_select)){
 
-				 	 		if(md5($password) == $user_select->password){
-				 	 			$returnArray = array(
-					 	 		"status"	=> "200",
-					 	 		"message"	=> "user details",
-					 	 		"details"	=> array(
-					 	 			"user_id"	=> $user_select->id,
-					 	 			"mobile"	=> $user_select->mobile,
-					 	 			"name"		=> $user_select->name,
-					 	 			"user_type"	=> $user_select->user_type->user_type,
-					 	 			"is_active"	=> $user_select->is_active
-					 	 			)
-					 	 		);
+							if(md5($password) == $user_select->password){
+								$returnArray = array(
+								"status"	=> "200",
+								"message"	=> "user details",
+								"details"	=> array(
+									"user_id"	=> $user_select->id,
+									"mobile"	=> $user_select->mobile,
+									"name"		=> $user_select->name,
+									"user_type"	=> $user_select->user_type->user_type,
+									"is_active"	=> $user_select->is_active
+									)
+								);
 
-					 	 		//session write
+								//session write
 
-					 	 		$session = $this->request->session();
-					 	 		$session->write('mobile',$user_select->mobile);
-					 	 		$session->write('user_id',$user_select->id);
-					 	 		$session->write('user_type',$user_select->user_type->user_type);
-					 	 		$session->write('name',$user_select->name);
+								$session = $this->request->session();
+								$session->write('mobile',$user_select->mobile);
+								$session->write('user_id',$user_select->id);
+								$session->write('user_type',$user_select->user_type->user_type);
+								$session->write('name',$user_select->name);
 
-					 	 		//print_r($session->read('mobile'));
-					 	 		$this->redirect('/dashboards');
-
-
+								//print_r($session->read('mobile'));
+								$this->redirect('/dashboards');
 
 
-				 	 		}
-				 	 		else{
-				 	 			$returnArray = array(
-					    			"status"	=> "403",
-					    			"message"	=> "Passwords do not match",
-					    			"details"	=> array()
-					    		);
-				 	 		}
-				 	 		
-				 	 	}
-				 	 	else{
-				 	 		$returnArray = array(
-				    			"status"	=> "403",
-				    			"message"	=> "No user found",
-				    			"details"	=> array()
-				    		);
-				 	 	}
-				 	 	
-				 	 }
-				 	 else{
-				 	 	$returnArray = array(
-			    			"status"	=> "403",
-			    			"message"	=> "Invalid parameter",
-			    			"details"	=> array()
-			    		);
-				 	 }
+
+
+							}
+							else{
+								$returnArray = array(
+									"status"	=> "403",
+									"message"	=> "Passwords do not match",
+									"details"	=> array()
+								);
+							}
+							
+						}
+						else{
+							$returnArray = array(
+								"status"	=> "403",
+								"message"	=> "No user found",
+								"details"	=> array()
+							);
+						}
+					
+					}
+					else{
+						$returnArray = array(
+							"status"	=> "403",
+							"message"	=> "Invalid parameter",
+							"details"	=> array()
+						);
+					}
 		 
 	        }
 	        else{

@@ -119,13 +119,9 @@ class AttendancesController extends AppController
 								
 								$array[$new_date][$value['student_id']] = $value['status'];
 								
-								//echo $array;
-								
-							
-							//echo $value['date']->month."<br/>";
+
 						}
-					    //pr($query);
-					    // SELECT first_name, last_name, classes.class, classes.section, attendances.total_days, attendances.total_present, attendances.total_absent FROM students LEFT JOIN class_students on class_students.student_id = students.id LEFT JOIN classes on classes.id = class_students.class_id LEFT JOIN attendances on attendances.student_id = students.id
+
 
 		 	 	if(!empty($data))
 				{
@@ -179,9 +175,6 @@ class AttendancesController extends AppController
 							$this->set("data",$data);
 							
 							$this->set("student_names",$student_names);
-							// foreach($student_names as $student_names){
-								 // print_r($student_names->student_name); 
-							  // }
 						}
 		 	 	}
 		 	 	else{
@@ -288,26 +281,9 @@ class AttendancesController extends AppController
 				
 				$handle=fopen($file,'r');
 				while ($data=fgetcsv($handle)) {
-
-					//pr($data);
 				
 				$classstudent=$ClassStudents->find('all')->where(['roll_no'=>$data[0],'class_id' => $class_id])->first();
-				//pr($classstudent);
-				// $Attendances=$AttendancesTable->find('all')->where(['student_id'=>$classstudent->student_id])->first();
-				// //print_r ($data[1]);
-				// $Attendances->attendance_type=$data[1];
-				// $Attendances->total_days=$Attendances->total_days+1;
-				// if($data[1]=='present'){ 
-					// $Attendances->total_present=$Attendances->total_present+1;
-				// }
-				// if($data[1]=='absent'){ 
-					// $Attendances->total_absent=$Attendances->total_absent+1;
-				// }
-				// if($data[1]=='leave'){ 
-					// $Attendances->total_leaves=$Attendances->total_leaves+1;
-				// }
-				// if($result=$AttendancesTable->save($Attendances)){
-				// }
+
 
 				$dailyattendance = $AttendanceDetailTable->newEntity();
 				$dailyattendance->student_id = $classstudent->student_id;

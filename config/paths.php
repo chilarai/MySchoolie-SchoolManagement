@@ -85,8 +85,7 @@ define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 
 
-// define('BASE_URL', 'http://localhost/newadmin/');
-define('BASE_URL', 'http://sjs.myschoolie.net/');
+define('BASE_URL', 'http://localhost/myschoolieadmin/');
 
 define('CIRCULARLIST', BASE_URL.'circulars/circularslistapi');
 define('CIRCULARADD', BASE_URL.'circulars/addcircularapi');

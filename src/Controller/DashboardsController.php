@@ -41,102 +41,102 @@ class DashboardsController extends AppController
 		 	unset($query);
 
 
-		 	$teachers_leave = TableRegistry::get('attendance_teachers');
+		 	// $teachers_leave = TableRegistry::get('attendance_teachers');
 
-			$query = $teachers_leave->query();
+			// $query = $teachers_leave->query();
 
-			$teachers_on_leave = $query->find('all')
-									->where(["DATE(`modified_date`) != CURDATE()"])
-		 	 						 ->select(['attendance_teachers'=>'count(attendance_teachers.id)'])
-		 	 						->first();
+			// $teachers_on_leave = $query->find('all')
+			// 						->where(["DATE(`modified_date`) != CURDATE()"])
+		 	//  						 ->select(['attendance_teachers'=>'count(attendance_teachers.id)'])
+		 	//  						->first();
 
-		 	unset($query);
-
-
-		 	$libraryTable = TableRegistry::get('books');
-
-			$query = $libraryTable->query();
-
-			$book_count = $query->find('all')
-									->where(["is_active"=>1])
-		 	 						 ->select(['total_books'=>'count(books.id)'])
-		 	 						->first();
+		 	// unset($query);
 
 
+		 	// $libraryTable = TableRegistry::get('books');
 
-		 	unset($query);
+			// $query = $libraryTable->query();
 
-
-		 	$fleetTable = TableRegistry::get('fleets');
-
-			$query = $fleetTable->query();
-
-			$fleet_count = $query->find('all')
-									->where(["is_active"=>1])
-		 	 						 ->select(['total_fleets'=>'count(fleets.id)'])
-		 	 						->first();
-
-		 	unset($query);
-
-
-		 	$hostel_roomsTable = TableRegistry::get('hostel_rooms');
-
-			$query = $hostel_roomsTable->query();
-
-			$hosteller_count = $query->find('all')
-									->where(["is_active"=>1])
-		 	 						 ->select(['total_hosteller'=>'count(hostel_rooms.id)'])
-		 	 						->first();
-
-		 	unset($query);
-
-
-		 	$hostelsTable = TableRegistry::get('hostels');
-
-			$query = $hostelsTable->query();
-
-			$hostel_seats_available = $query->find('all')
-									->where(["is_active"=>1])
-		 	 						 ->select(['total_seats'=>'sum(hostels.vacancy)'])
-		 	 						->first();
+			// $book_count = $query->find('all')
+			// 						->where(["is_active"=>1])
+		 	//  						 ->select(['total_books'=>'count(books.id)'])
+		 	//  						->first();
 
 
 
-		 	unset($query);
+		 	// unset($query);
 
 
-		 	$fleetsTable = TableRegistry::get('fleets');
+		 	// $fleetTable = TableRegistry::get('fleets');
 
-			$query = $fleetsTable->query();
+			// $query = $fleetTable->query();
 
-			$fleets_active = $query->find('all')
-									->where(["is_active"=>1])
-		 	 						 ->select(['total_fleets'=>'count(fleets.id)'])
-		 	 						->first();
+			// $fleet_count = $query->find('all')
+			// 						->where(["is_active"=>1])
+		 	//  						 ->select(['total_fleets'=>'count(fleets.id)'])
+		 	//  						->first();
+
+		 	// unset($query);
 
 
-		 	unset($query);
+		 	// $hostel_roomsTable = TableRegistry::get('hostel_rooms');
+
+			// $query = $hostel_roomsTable->query();
+
+			// $hosteller_count = $query->find('all')
+			// 						->where(["is_active"=>1])
+		 	//  						 ->select(['total_hosteller'=>'count(hostel_rooms.id)'])
+		 	//  						->first();
+
+		 	// unset($query);
 
 
-		 	$appointmentsTable = TableRegistry::get('appointments');
+		 	// $hostelsTable = TableRegistry::get('hostels');
 
-			$query = $appointmentsTable->query();
+			// $query = $hostelsTable->query();
 
-			$upcoming_appointments = $query->find('all')
-									->where(["is_active"=>1,"offered_date >= CURDATE()"])
-									->orWhere(["is_active"=>2,"offered_date >= CURDATE()"])
-		 	 						 ->select(['appointments'=>'count(appointments.id)'])
-		 	 						->first();
+			// $hostel_seats_available = $query->find('all')
+			// 						->where(["is_active"=>1])
+		 	//  						 ->select(['total_seats'=>'sum(hostels.vacancy)'])
+		 	//  						->first();
 
-			$leavesTable = TableRegistry::get('leaves_teachers');
 
-		 	$leaves_details = $leavesTable->find("all")
-		 								->where(["leaves_teachers.is_active"=>1])
-										  ->select(['leave_count'=>'count(leaves_teachers.id)',
-										  	   ])
-										  ->first();
 
-			$this->set("leaves_details", $leaves_details);
+		 	// unset($query);
+
+
+		 	// $fleetsTable = TableRegistry::get('fleets');
+
+			// $query = $fleetsTable->query();
+
+			// $fleets_active = $query->find('all')
+			// 						->where(["is_active"=>1])
+		 	//  						 ->select(['total_fleets'=>'count(fleets.id)'])
+		 	//  						->first();
+
+
+		 	// unset($query);
+
+
+		 	// $appointmentsTable = TableRegistry::get('appointments');
+
+			// $query = $appointmentsTable->query();
+
+			// $upcoming_appointments = $query->find('all')
+			// 						->where(["is_active"=>1,"offered_date >= CURDATE()"])
+			// 						->orWhere(["is_active"=>2,"offered_date >= CURDATE()"])
+		 	//  						 ->select(['appointments'=>'count(appointments.id)'])
+		 	//  						->first();
+
+			// $leavesTable = TableRegistry::get('leaves_teachers');
+
+		 	// $leaves_details = $leavesTable->find("all")
+		 	// 							->where(["leaves_teachers.is_active"=>1])
+			// 							  ->select(['leave_count'=>'count(leaves_teachers.id)',
+			// 							  	   ])
+			// 							  ->first();
+
+			// $this->set("leaves_details", $leaves_details);
 
         	$returnArray = array(
     			"status"	=> "200",
