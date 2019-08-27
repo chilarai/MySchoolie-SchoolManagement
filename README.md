@@ -10,12 +10,8 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 ## Installation
 
 1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
-
-If Composer is installed globally, run
-```bash
-composer create-project --prefer-dist cakephp/app [app_name]
 ```
-3. git init
-4. git clone
-5. composer install
+git init
+git clone
+composer install
+```
