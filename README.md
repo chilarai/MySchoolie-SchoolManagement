@@ -35,4 +35,4 @@ Database file can be found in `Database` folder in the root directory. Please im
 
 We are working on more modules and will update as soon as they are ready.
 
-If you wish to contribute to the project, please feel free to do so. We would be glad to accept new contributors
+If you wish to contribute to the project, please feel free to do so. We will be glad to accept new contributors
