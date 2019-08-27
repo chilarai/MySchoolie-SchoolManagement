@@ -18,7 +18,7 @@
                 <!-- begin login-header -->
                 <div class="login-header">
                     <div class="brand">
-                        <span class="logo"></span>MySchoolie Admin
+                        <span class="logo"></span>Admin
                     </div>
                     <div class="icon">
                         <i class="fa fa-sign-in"></i>
@@ -30,9 +30,7 @@
                         <center>Successfully Logged Out. <?php echo $this->Html->link("Login Again", array("controller"=>"users", "action"=>"login")); ?></center>
 
                         <hr />
-                        <p class="text-center">
-                            &copy; MySchoolie. All Right Reserved 2017
-                        </p>
+                        
                 </div>
                 <!-- end login-content -->
             </div>

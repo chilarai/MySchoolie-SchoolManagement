@@ -3,7 +3,7 @@
             <!-- begin news-feed -->
             <div class="news-feed">
                 <div class="news-image">
-                    <img src="<?php echo BASE_URL?>img/login-bg/bg-10.jpg" data-id="login-cover-image" width="400" alt="" />
+                    <img src="<?php echo BASE_URL?>img/login-bg/bg-10.png" data-id="login-cover-image" width="400" alt="" />
                 </div>
 
             </div>
@@ -13,7 +13,7 @@
                 <!-- begin login-header -->
                 <div class="login-header">
                     <div class="brand">
-                        <span class="logo"></span>MySchoolie Admin
+                        Admin
                     </div>
                     <div class="icon">
                         <i class="fa fa-sign-in"></i>
@@ -31,17 +31,14 @@
                         </div>
 
                         <div class="login-buttons">
-                            <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign me in</button>
                         </div>
 
                         <hr />
-                        <p class="text-center">
-                            &copy; MySchoolie. All Right Reserved 2017 <?php // pr($response); ?>
-
-                        </p>
+                        
                     <?php echo $this->Form->end(); ?>
-                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></div><br/>
-                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></div>
+                    <!-- <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_parent.png" alt="Parents app image" height="80"/></div><br/>
+                    <div class="text-center"><img src="<?php echo BASE_URL?>img/Google_Play_teacher.png" alt="Staffs app image" height="80"/></div> -->
                 </div>
                 <!-- end login-content -->
 

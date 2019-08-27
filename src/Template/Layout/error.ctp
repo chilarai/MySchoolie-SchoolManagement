@@ -29,7 +29,7 @@
     <?php echo $this->fetch("content");?>
     
     <!-- ================== BEGIN BASE JS ================== -->
-    <script src="<?php echo BASE_URL;?>plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="<?php echo BASE_URL;?>plugins/jquery/jquery-3.4.1.min.js"></script>
     <script src="<?php echo BASE_URL;?>plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
     <script src="<?php echo BASE_URL;?>plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
     <script src="<?php echo BASE_URL;?>plugins/bootstrap/js/bootstrap.min.js"></script>
