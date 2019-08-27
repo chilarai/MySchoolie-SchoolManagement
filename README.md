@@ -1,10 +1,36 @@
-# My Schoolie - Admin Panel
-Admin panel for the school management application. Written in Cakephp 3.x and MySql
+# My Schoolie - Open source school management application
+
+A free to use school management application. Written in Cakephp 3.x and MySql.
+We are constantly updating the list of available modules whenever they are ready. If you have any issues, please raise a new [issue here](https://github.com/chilarai/MySchoolie-SchoolManagement/issues)
 
 ## Installation
 
 1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+
 ```
-cd [application-folder]
+cd <application-folder>
 composer install
 ```
+
+Database file can be found in `Database` folder in the root directory. Please import the mysql file and change the credentials in `config/app.php` as specified by [Cakephp 3.x](https://cakephp.org/)
+
+### Demo Admin Credentials
+
+**Username**: 1234567890
+**Password**: 123
+
+## Available Modules
+
+1.  Student admission and details
+2.  Student and Staff attendance
+3.  Teaching and Admin staffs
+4.  Leaves
+5.  Assignments
+6.  Anecdotes
+7.  Canteen
+8.  Timetable
+9.  Appointments
+10. Circulars
+11. Courses and Subjects
+
+We are working on more modules and will update as soon as they are ready
