@@ -22,6 +22,7 @@ Database file can be found in `Database` folder in the root directory. Please im
 
 ### Demo Admin Credentials
 http://localhost/myschoolieadmin/users/login
+
 **Username**: 1234567890
 **Password**: 123
 
