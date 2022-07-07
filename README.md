@@ -21,6 +21,7 @@ composer install
 Database file can be found in `Database` folder in the root directory. Please import the mysql file and change the credentials in `config/app.php` as specified by [Cakephp 3.x](https://cakephp.org/)
 
 ### Demo Admin Credentials
+Once you setup your database in local system and webserver is up and running, hit the link below in a browser
 http://localhost/myschoolieadmin/users/login
 
 **Username**: 1234567890
