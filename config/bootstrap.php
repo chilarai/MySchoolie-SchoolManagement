@@ -222,4 +222,9 @@ if (Configure::read('debug')) {
 }
 
 
+// if (Configure::read('debug')) {
+//     Configure::write('DebugKit', ['forceEnable' => true]);
+//     Plugin::load('DebugKit', ['bootstrap' => true]);
+// }
+
 Plugin::load('CsvView');

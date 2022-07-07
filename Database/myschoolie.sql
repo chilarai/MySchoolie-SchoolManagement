@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 07, 2022 at 11:46 AM
+-- Generation Time: Jul 07, 2022 at 01:20 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -85,6 +85,45 @@ CREATE TABLE IF NOT EXISTS `attendances` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE IF NOT EXISTS `books` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `isbn_code` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `available_quantity` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `added_on` timestamp NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `genre` varchar(255) NOT NULL,
+  `book_code` varchar(255) NOT NULL,
+  `publication` varchar(255) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_categories`
+--
+
+DROP TABLE IF EXISTS `book_categories`;
+CREATE TABLE IF NOT EXISTS `book_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -224,6 +263,130 @@ CREATE TABLE IF NOT EXISTS `course_subjects` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `drivers`
+--
+
+DROP TABLE IF EXISTS `drivers`;
+CREATE TABLE IF NOT EXISTS `drivers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `license_number` varchar(255) NOT NULL,
+  `license_expiry` varchar(255) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee_exemptions`
+--
+
+DROP TABLE IF EXISTS `fee_exemptions`;
+CREATE TABLE IF NOT EXISTS `fee_exemptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` float NOT NULL,
+  `reason` varchar(500) NOT NULL,
+  `modified_date` timestamp NOT NULL,
+  `exempted_on` timestamp NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee_structures`
+--
+
+DROP TABLE IF EXISTS `fee_structures`;
+CREATE TABLE IF NOT EXISTS `fee_structures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class` varchar(255) NOT NULL,
+  `total_fee` float NOT NULL,
+  `fee_detail_json` json NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fleets`
+--
+
+DROP TABLE IF EXISTS `fleets`;
+CREATE TABLE IF NOT EXISTS `fleets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_type` varchar(255) NOT NULL,
+  `vehicle_no` varchar(255) NOT NULL,
+  `vehicle_name` varchar(255) NOT NULL,
+  `device_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `gps_no` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fleet_routes`
+--
+
+DROP TABLE IF EXISTS `fleet_routes`;
+CREATE TABLE IF NOT EXISTS `fleet_routes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver_id` int(11) NOT NULL,
+  `session` varchar(255) NOT NULL,
+  `fleet_id` int(11) NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fleet_vendors`
+--
+
+DROP TABLE IF EXISTS `fleet_vendors`;
+CREATE TABLE IF NOT EXISTS `fleet_vendors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_number` varchar(255) NOT NULL,
+  `bank_name` varchar(255) NOT NULL,
+  `ifsc` varchar(255) NOT NULL,
+  `vendor_name` varchar(255) NOT NULL,
+  `contact_person` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `pan` varchar(255) NOT NULL,
+  `photograph` varchar(255) NOT NULL,
+  `ownership` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issuances`
+--
+
+DROP TABLE IF EXISTS `issuances`;
+CREATE TABLE IF NOT EXISTS `issuances` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue_date` timestamp NOT NULL,
+  `issued_till_date` timestamp NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `borrower_id` int(11) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `leaves_students`
 --
 
@@ -311,6 +474,21 @@ INSERT INTO `parent_students` (`id`, `student_id`, `user_detail_id`, `user_id`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `passengers`
+--
+
+DROP TABLE IF EXISTS `passengers`;
+CREATE TABLE IF NOT EXISTS `passengers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `fleet_route_id` int(11) NOT NULL,
+  `drop_address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `results`
 --
 
@@ -327,6 +505,32 @@ CREATE TABLE IF NOT EXISTS `results` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `routes`
+--
+
+DROP TABLE IF EXISTS `routes`;
+CREATE TABLE IF NOT EXISTS `routes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `number` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salary_structures`
+--
+
+DROP TABLE IF EXISTS `salary_structures`;
+CREATE TABLE IF NOT EXISTS `salary_structures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -468,6 +672,25 @@ INSERT INTO `user_types` (`id`, `user_type`, `detail`, `is_active`, `created_dat
 (3, 'manager', 'overall manager for all the staffs', 1, '2017-03-07 22:24:13', '2017-03-07 22:24:13'),
 (4, 'teacher', 'school teacher', 1, '2017-03-07 22:24:13', '2017-03-07 22:24:13'),
 (5, 'parent', 'parent of students', 1, '2017-03-07 22:24:29', '2017-03-07 22:24:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vacancies`
+--
+
+DROP TABLE IF EXISTS `vacancies`;
+CREATE TABLE IF NOT EXISTS `vacancies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `total_seats` int(11) NOT NULL,
+  `qualification` varchar(255) NOT NULL,
+  `closing_date` timestamp NOT NULL,
+  `employment_type` varchar(255) NOT NULL,
+  `vacancy` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
