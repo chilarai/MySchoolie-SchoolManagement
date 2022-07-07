@@ -46,5 +46,11 @@
         "test": "vendor/bin/phpunit --colors=always"
     },
     "minimum-stability": "beta",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "aura/installer-default": true,
+            "cakephp/plugin-installer": true
+        }
+    }
 }
