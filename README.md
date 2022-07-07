@@ -12,6 +12,12 @@ cd <application-folder>
 composer install
 ```
 
+2. If you want to try out, please rename the main folder of your project to **myschoolieadmin** instead of any other name
+
+3. Rename **config/app.default.php** to **app/default.php** and change the following
+* mysql credentials in `Datasources>default` section
+* Remember to set `SECURITY_SALT` value to something else
+
 Database file can be found in `Database` folder in the root directory. Please import the mysql file and change the credentials in `config/app.php` as specified by [Cakephp 3.x](https://cakephp.org/)
 
 ### Demo Admin Credentials
