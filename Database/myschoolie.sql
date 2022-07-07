@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 27, 2019 at 06:00 AM
--- Server version: 5.7.24
--- PHP Version: 7.1.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 07, 2022 at 11:46 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,8 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `appointments`
 --
 
-CREATE TABLE `appointments` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `appointments`;
+CREATE TABLE IF NOT EXISTS `appointments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `user_detail_id` int(11) NOT NULL,
@@ -38,7 +38,9 @@ CREATE TABLE `appointments` (
   `offered_date` datetime NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -47,8 +49,9 @@ CREATE TABLE `appointments` (
 -- Table structure for table `assignments`
 --
 
-CREATE TABLE `assignments` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `assignments`;
+CREATE TABLE IF NOT EXISTS `assignments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_detail_id` int(11) NOT NULL,
   `subject` varchar(50) NOT NULL,
   `submission_date` date NOT NULL,
@@ -57,7 +60,8 @@ CREATE TABLE `assignments` (
   `year` year(4) NOT NULL,
   `is_active` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -66,8 +70,9 @@ CREATE TABLE `assignments` (
 -- Table structure for table `attendances`
 --
 
-CREATE TABLE `attendances` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `attendances`;
+CREATE TABLE IF NOT EXISTS `attendances` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `attendance_type` enum('present','absent','leave','unmarked') DEFAULT NULL,
   `total_days` varchar(255) NOT NULL DEFAULT '0',
@@ -77,7 +82,8 @@ CREATE TABLE `attendances` (
   `year` year(4) NOT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -86,8 +92,9 @@ CREATE TABLE `attendances` (
 -- Table structure for table `circulars`
 --
 
-CREATE TABLE `circulars` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `circulars`;
+CREATE TABLE IF NOT EXISTS `circulars` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `heading` varchar(255) NOT NULL,
   `body` varchar(2000) NOT NULL,
   `event_date` datetime DEFAULT NULL,
@@ -96,7 +103,8 @@ CREATE TABLE `circulars` (
   `year` year(4) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -105,14 +113,16 @@ CREATE TABLE `circulars` (
 -- Table structure for table `classes`
 --
 
-CREATE TABLE `classes` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE IF NOT EXISTS `classes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class` varchar(10) NOT NULL,
   `section` varchar(10) DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `classes`
@@ -130,16 +140,18 @@ INSERT INTO `classes` (`id`, `class`, `section`, `is_active`, `created_date`, `m
 -- Table structure for table `class_students`
 --
 
-CREATE TABLE `class_students` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `class_students`;
+CREATE TABLE IF NOT EXISTS `class_students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `year` year(4) NOT NULL,
   `roll_no` varchar(15) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `class_students`
@@ -158,16 +170,18 @@ INSERT INTO `class_students` (`id`, `class_id`, `student_id`, `year`, `roll_no`,
 -- Table structure for table `class_teachers`
 --
 
-CREATE TABLE `class_teachers` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `class_teachers`;
+CREATE TABLE IF NOT EXISTS `class_teachers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `user_detail_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `year` year(4) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `class_teachers`
@@ -179,18 +193,51 @@ INSERT INTO `class_teachers` (`id`, `class_id`, `user_detail_id`, `user_id`, `ye
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `courses`
+--
+
+DROP TABLE IF EXISTS `courses`;
+CREATE TABLE IF NOT EXISTS `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_name` varchar(255) NOT NULL,
+  `total_subjects` int(11) NOT NULL,
+  `remark` varchar(500) NOT NULL,
+  `mark_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_subjects`
+--
+
+DROP TABLE IF EXISTS `course_subjects`;
+CREATE TABLE IF NOT EXISTS `course_subjects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `subject_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `leaves_students`
 --
 
-CREATE TABLE `leaves_students` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `leaves_students`;
+CREATE TABLE IF NOT EXISTS `leaves_students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `leave_reason` varchar(255) NOT NULL,
   `leave_from` date NOT NULL,
   `leave_to` date NOT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -199,15 +246,17 @@ CREATE TABLE `leaves_students` (
 -- Table structure for table `leaves_teachers`
 --
 
-CREATE TABLE `leaves_teachers` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `leaves_teachers`;
+CREATE TABLE IF NOT EXISTS `leaves_teachers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `leave_reason` varchar(255) NOT NULL,
   `leave_from` date NOT NULL,
   `leave_to` date NOT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -216,8 +265,9 @@ CREATE TABLE `leaves_teachers` (
 -- Table structure for table `notices`
 --
 
-CREATE TABLE `notices` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `notices`;
+CREATE TABLE IF NOT EXISTS `notices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `user_detail_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
@@ -225,7 +275,8 @@ CREATE TABLE `notices` (
   `details` varchar(1000) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -234,15 +285,17 @@ CREATE TABLE `notices` (
 -- Table structure for table `parent_students`
 --
 
-CREATE TABLE `parent_students` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `parent_students`;
+CREATE TABLE IF NOT EXISTS `parent_students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `user_detail_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `parent_students`
@@ -261,8 +314,9 @@ INSERT INTO `parent_students` (`id`, `student_id`, `user_detail_id`, `user_id`, 
 -- Table structure for table `results`
 --
 
-CREATE TABLE `results` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `results`;
+CREATE TABLE IF NOT EXISTS `results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `exam` int(11) NOT NULL,
   `rollno` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -270,7 +324,8 @@ CREATE TABLE `results` (
   `year` year(4) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -279,14 +334,16 @@ CREATE TABLE `results` (
 -- Table structure for table `schools`
 --
 
-CREATE TABLE `schools` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schools`;
+CREATE TABLE IF NOT EXISTS `schools` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `details_json` varchar(1000) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `schools`
@@ -301,8 +358,9 @@ INSERT INTO `schools` (`id`, `name`, `details_json`, `is_active`, `created_date`
 -- Table structure for table `students`
 --
 
-CREATE TABLE `students` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `students`;
+CREATE TABLE IF NOT EXISTS `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `birthday` date NOT NULL,
@@ -310,8 +368,23 @@ CREATE TABLE `students` (
   `details_json` varchar(1000) DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+DROP TABLE IF EXISTS `subjects`;
+CREATE TABLE IF NOT EXISTS `subjects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `remark` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -319,16 +392,18 @@ CREATE TABLE `students` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `mobile` varchar(10) NOT NULL,
   `password` varchar(300) NOT NULL,
   `name` varchar(200) NOT NULL,
   `user_type_id` int(11) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -343,8 +418,9 @@ INSERT INTO `users` (`id`, `mobile`, `password`, `name`, `user_type_id`, `is_act
 -- Table structure for table `user_details`
 --
 
-CREATE TABLE `user_details` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user_details`;
+CREATE TABLE IF NOT EXISTS `user_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `user_type_id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
@@ -354,8 +430,9 @@ CREATE TABLE `user_details` (
   `other_details` varchar(1000) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_details`
@@ -370,14 +447,16 @@ INSERT INTO `user_details` (`id`, `user_id`, `user_type_id`, `firstname`, `lastn
 -- Table structure for table `user_types`
 --
 
-CREATE TABLE `user_types` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user_types`;
+CREATE TABLE IF NOT EXISTS `user_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_type` varchar(200) NOT NULL,
   `detail` varchar(200) DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_types`
@@ -389,219 +468,6 @@ INSERT INTO `user_types` (`id`, `user_type`, `detail`, `is_active`, `created_dat
 (3, 'manager', 'overall manager for all the staffs', 1, '2017-03-07 22:24:13', '2017-03-07 22:24:13'),
 (4, 'teacher', 'school teacher', 1, '2017-03-07 22:24:13', '2017-03-07 22:24:13'),
 (5, 'parent', 'parent of students', 1, '2017-03-07 22:24:29', '2017-03-07 22:24:29');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `appointments`
---
-ALTER TABLE `appointments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `assignments`
---
-ALTER TABLE `assignments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `attendances`
---
-ALTER TABLE `attendances`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `circulars`
---
-ALTER TABLE `circulars`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `classes`
---
-ALTER TABLE `classes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `class_students`
---
-ALTER TABLE `class_students`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `class_teachers`
---
-ALTER TABLE `class_teachers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `leaves_students`
---
-ALTER TABLE `leaves_students`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `leaves_teachers`
---
-ALTER TABLE `leaves_teachers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `notices`
---
-ALTER TABLE `notices`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `parent_students`
---
-ALTER TABLE `parent_students`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `results`
---
-ALTER TABLE `results`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schools`
---
-ALTER TABLE `schools`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `students`
---
-ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_details`
---
-ALTER TABLE `user_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_types`
---
-ALTER TABLE `user_types`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `appointments`
---
-ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `assignments`
---
-ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `attendances`
---
-ALTER TABLE `attendances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `circulars`
---
-ALTER TABLE `circulars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `classes`
---
-ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `class_students`
---
-ALTER TABLE `class_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `class_teachers`
---
-ALTER TABLE `class_teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `leaves_students`
---
-ALTER TABLE `leaves_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `leaves_teachers`
---
-ALTER TABLE `leaves_teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `notices`
---
-ALTER TABLE `notices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `parent_students`
---
-ALTER TABLE `parent_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `results`
---
-ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `schools`
---
-ALTER TABLE `schools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `user_details`
---
-ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `user_types`
---
-ALTER TABLE `user_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
