@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 07, 2022 at 01:20 PM
+-- Generation Time: Jul 08, 2022 at 06:13 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -529,6 +529,13 @@ CREATE TABLE IF NOT EXISTS `routes` (
 DROP TABLE IF EXISTS `salary_structures`;
 CREATE TABLE IF NOT EXISTS `salary_structures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `grade` varchar(255) NOT NULL,
+  `basic` float NOT NULL,
+  `hra` float NOT NULL,
+  `conveyance` float NOT NULL,
+  `deduction` float NOT NULL,
+  `total` float NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
