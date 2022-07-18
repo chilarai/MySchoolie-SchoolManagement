@@ -349,8 +349,9 @@ class AttendancesController extends AppController
 												->first();
 			
 			$attendance_id = $attendance->id;
+
 			//$this->set("attendance_id", $attendance_id);
-			if (empty($attendance_id) AND $type == "new")
+			if (empty($attendance_id))
 			{
 				$update_attendance = $attendance_details_table->newEntity();
 				
@@ -373,7 +374,7 @@ class AttendancesController extends AppController
 				else
 				{
 							$returnArray = array(
-							"status"	=> "400",
+							"status"	=> "403",
 							"message"	=> "Unexpected Error: Attendance could not be added",
 							"details"	=> array()
 							);
@@ -400,7 +401,7 @@ class AttendancesController extends AppController
 				else
 				{
 							$returnArray = array(
-							"status"	=> "400",
+							"status"	=> "403",
 							"message"	=> "Unexpected Error:  Attendance cannot be updated",
 							"details"	=> array()
 							);

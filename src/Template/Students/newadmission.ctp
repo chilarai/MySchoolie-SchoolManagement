@@ -311,8 +311,8 @@ foreach ($classlist['details']['class_list'] as $key => $value) {
                 <div class="form-group">
                     <label class="col-md-3 control-label"> Contact: Home & Office  </label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="m_contact"  name="mother_mobile" placeholder="Input Home Contact"/>
-						<input type="text" class="form-control"  name="m_office_contact" placeholder="Input Office Contact"/>
+                        <input type="text" class="form-control" id="m_contact"  name="mother_mobile" placeholder="Input Home Contact" maxlength="10"/>
+						<input type="text" class="form-control"  name="m_office_contact" placeholder="Input Office Contact" maxlength="10"/>
                     </div>
                 </div>
 
